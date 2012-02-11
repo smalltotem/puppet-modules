@@ -1,0 +1,11 @@
+#!upstart
+description "node.js dev server"
+author      "OpDemand"
+
+start on (local-filesystems and net-device-up IFACE=eth0)
+stop on shutdown
+
+script
+   export HOME="<%= scope.lookupvar("nodejs::params::home") %>"
+   exec sudo -u <%= scope.lookupvar("nodejs::params::username") %> -i node <%= scope.lookupvar("nodejs::params::main") %> 2>&1 >> /var/log/nodejs.log
+end script

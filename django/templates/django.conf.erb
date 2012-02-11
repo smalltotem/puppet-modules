@@ -1,0 +1,11 @@
+#!upstart
+description "django dev server"
+author      "OpDemand"
+
+start on (local-filesystems and net-device-up IFACE=eth0)
+stop on shutdown
+
+script
+    export HOME="<%= scope.lookupvar("django::params::home") %>"
+    exec sudo -u <%= scope.lookupvar("django::params::username") %> -i python <%= scope.lookupvar("django::params::repository") %>/app/manage.py runserver <%= scope.lookupvar("django::params::bind") %>:<%= scope.lookupvar("django::params::port") %> --noreload 2>&1 >> /var/log/django.log
+end script

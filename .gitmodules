@@ -1,0 +1,12 @@
+[submodule "mongodb"]
+	path = mongodb
+	url = git://github.com/portertech/puppet-mongodb.git
+[submodule "vcsrepo"]
+	path = vcsrepo
+	url = git://github.com/puppetlabs/puppet-vcsrepo.git
+[submodule "hiera"]
+	path = hiera
+	url = git://github.com/puppetlabs/hiera-puppet.git
+[submodule "apt"]
+	path = apt
+	url = git://github.com/evolvingweb/puppet-apt.git
