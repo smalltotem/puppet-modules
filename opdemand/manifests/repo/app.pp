@@ -2,12 +2,12 @@ class opdemand::repo::app (
   
   # inputs default to hiera lookup followed by second arg
   # can override using parameterized class inputs
-  $repository_provider = hiera("server/repository_provider", "git"),
-  $repository_url = hiera("server/repository_url"),
-  $repository_path = hiera("server/repository_path", "/home/ubuntu/repo"),
-  $repository_branch = hiera("server/repository_branch", "master"),
-  $repository_owner = hiera("server/repository_owner", "ubuntu"),
-  $repository_group = hiera("server/repository_owner", "ubuntu")) {
+  $repository_provider = hiera("application/repository_provider", "git"),
+  $repository_url = hiera("application/repository_url"),
+  $repository_path = hiera("application/repository_path", "/home/ubuntu/repo"),
+  $repository_branch = hiera("application/repository_branch", "master"),
+  $repository_owner = hiera("application/repository_owner", "ubuntu"),
+  $repository_group = hiera("application/repository_owner", "ubuntu")) {
   
   vcsrepo { $repository_path:
     ensure => latest,
