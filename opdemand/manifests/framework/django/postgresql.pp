@@ -3,8 +3,7 @@ class opdemand::framework::django::postgresql {
   # require opdemand common and repo
   require opdemand::common
   require opdemand::repo::app
-  require opdemand::database::postgresql
-
+  
   # initialize dynamic parameters
   class {"django::params":
     # admin
