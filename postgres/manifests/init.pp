@@ -1,7 +1,7 @@
 
 # Base SQL exec
 define sqlexec($username, $database, $sql, $sqlcheck) {
-  exec{ "sudo -u postgres -i psql -U ${username} -d $database -c \"${sql}\" >> /var/log/puppet/postgresql.sql.log 2>&1 && /bin/sleep 5":
+  exec{ "sudo -u postgres -i psql -U ${username} -d $database -c \"${sql}\" >> /var/log/puppet/postgresql.sql.log 2>&1 && /bin/sleep 2":
     path        => $path,
     timeout     => 600,
     #user        => "${username}",
