@@ -17,10 +17,10 @@ class opdemand::database::mysql {
   include mysql::config
   include mysql::service
 
-  # output dynamic orchestration values
-  opdemand::output {"database/host":
-     key => "database/host",
-     value => $ec2_public_hostname,
-  }
+  # # output dynamic orchestration values
+  # opdemand::output {"database/host":
+     # key => "database/host",
+     # value => $ec2_public_hostname,
+  # }
 
 }
