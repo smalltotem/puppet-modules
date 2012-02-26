@@ -7,7 +7,7 @@ class django::service {
     name => "django",
     provider => upstart,
     require => [ Class[Django::Install], Class[Django::Config] ],
-    subscribe => Vcsrepo["$django::params::repository"],
+    subscribe => Vcsrepo["$django::params::repository_path"],
   } ->
 
   django::syncdb {"django":} ->
@@ -19,9 +19,9 @@ define django::syncdb {
     exec { "sudo -u $django::params::username python manage.py syncdb --noinput":
       path => $path,
       user => "root",
-      cwd => "$django::params::repository/app",
+      cwd => "$django::params::repository_path/app",
       require =>  Class[Django::Install],
-      subscribe => Vcsrepo["$django::params::repository"],
+      subscribe => Vcsrepo["$django::params::repository_path"],
     }
 }
 
@@ -32,7 +32,7 @@ define django::createadmin {
       path => $path,
       provider => shell,
       user => "ubuntu",
-      cwd => "$django::params::repository/app",
+      cwd => "$django::params::repository_path/app",
       require =>  Class[Django::Install],
     }
 }
