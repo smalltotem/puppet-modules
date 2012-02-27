@@ -17,17 +17,12 @@ define opdemand::ssh::public::add() {
     $keytype = $1
     $modulus = $2
     $keyid = $3
-    
-    notice ("keytype: $keytype, keyid: $keyid, modulus: $modulus")
-   
-    if $keyid == "" {
-      $keyname = "default"            
-    } else {
-      $keyname = $keyid
-    }
-    
-    notice ("keyname: $keyname")
-        
+       
+    $keyname = $keyid ? {
+      /(.+)/  => $1,
+      default => "default"
+    } 
+            
     ssh_authorized_key { "${keyname}":
       ensure  => "present",
       user    => "ubuntu",
