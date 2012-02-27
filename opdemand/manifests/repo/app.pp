@@ -6,8 +6,8 @@ class opdemand::repo::app (
   $repository_url = hiera("application/repository_url"),
   $repository_path = hiera("application/repository_path", "/home/ubuntu/repo"),
   $repository_branch = hiera("application/repository_branch", "master"),
-  $repository_owner = hiera("application/repository_owner", "ubuntu"),
-  $repository_group = hiera("application/repository_owner", "ubuntu")) {
+  $repository_owner = hiera("application/username", "ubuntu"),
+  $repository_group = hiera("application/group", "ubuntu")) {
   
   vcsrepo { $repository_path:
     ensure => latest,

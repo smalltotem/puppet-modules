@@ -12,11 +12,16 @@ class opdemand::ssh::public ($user="ubuntu") {
 
 define opdemand::ssh::public::add() {
   
-  if $name =~ /^(ssh-...) ([^ ]+) (.+)/ {
+  if $name =~ /^(ssh-...) ([^ ]+) ?(.+)?/ {
     
     $keytype = $1
     $modulus = $2
-    $keyname = $3    
+    $keyid = $3
+    
+    case $keyid {
+      "": { $keyname = "default" }
+      default: { $keyname = $keyid }
+    }
         
     ssh_authorized_key { $keyname:
       ensure  => "present",
