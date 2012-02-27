@@ -5,7 +5,7 @@ class opdemand::ssh::private ($user="ubuntu") {
   
   # add one private key for the opdemand user
   opdemand::ssh::private::add { $user:
-    contents => hiera("server/ssh_private_key"), 
+    contents => hiera("server/ssh_private_key", ""), 
   }
   
 }
