@@ -18,13 +18,11 @@ define opdemand::ssh::public::add() {
     $modulus = $2
     $keyid = $3
     
-    case $keyid {
+    $keyname = $keyid ? {
       "":      { $keyname = "default" }
       default: { $keyname = $keyid }
     }
-    
-    notice('trying to install keyname: $keyname from $keyid')
-    
+        
     ssh_authorized_key { "$keyname":
       ensure  => "present",
       user    => "ubuntu",
