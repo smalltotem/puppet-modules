@@ -3,7 +3,7 @@ class opdemand::ssh::public ($user="ubuntu") {
 
   require opdemand::common    
   
-  $keys = hiera("server/authorized_keys")
+  $keys = hiera("server/ssh_authorized_keys")
   
   # add a key for each in the list
   opdemand::ssh::public::add { $keys: }
