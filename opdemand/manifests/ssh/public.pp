@@ -19,17 +19,20 @@ define opdemand::ssh::public::add() {
     $keyid = $3
     
     case $keyid {
-      "": { $keyname = "default" }
+      "":      { $keyname = "default" }
       default: { $keyname = $keyid }
     }
-        
-    ssh_authorized_key { $keyname:
+    
+    notice('trying to install keyname: $keyname from $keyid')
+    
+    ssh_authorized_key { "$keyname":
       ensure  => "present",
       user    => "ubuntu",
       type    => $keytype,
       key     => $modulus,
       options => $options ? { "" => undef, default => $options },
     }
+    
   } else {
     notice('failed to parse $name')
   }
