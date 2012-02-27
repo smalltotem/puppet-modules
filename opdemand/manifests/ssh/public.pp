@@ -18,12 +18,13 @@ define opdemand::ssh::public::add() {
     $modulus = $2
     $keyid = $3
     
-    $keyname = $keyid ? {
-      "":      { $keyname = "default" }
-      default: { $keyname = $keyid }
+    if $keyid == "" {
+      $keyname = "default"
+    } else {
+      $keyname = $keyid
     }
         
-    ssh_authorized_key { "$keyname":
+    ssh_authorized_key { "${keyname}":
       ensure  => "present",
       user    => "ubuntu",
       type    => $keytype,
