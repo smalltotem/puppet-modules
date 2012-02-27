@@ -15,7 +15,7 @@ define opdemand::ssh::private::add($contents,
                                    $group="ubuntu",
                                    $home="/home/ubuntu") {
   
-  if $contents =~ /^-----BEGIN (...) PRIVATE KEY[.+]/ {
+  if $contents =~ /^-----BEGIN (...) PRIVATE KEY/ {
     
     case $1 {
       'RSA': { $file_path = "$home/.ssh/id_rsa" }
@@ -26,8 +26,7 @@ define opdemand::ssh::private::add($contents,
       owner   => $user,
       group   => $group,
       mode    => 600,
-      contents => $contents,
-      require => [ User[$user], File[$home]],
+      content => $contents,
     }
   } else {
     notice('skipped server/ssh_private_key installation')
