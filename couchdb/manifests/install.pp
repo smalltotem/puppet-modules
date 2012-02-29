@@ -28,6 +28,7 @@ ENABLE_SERVER=0
   # order deps to work around packaging issue
   Exec["prevent-daemon-start"] ->
   Package["couchdb"] ->
+  Class["Couchdb::Config"] ->
   Exec["allow-daemon-start"]
   
 }
