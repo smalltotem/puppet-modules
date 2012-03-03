@@ -5,7 +5,7 @@ class opdemand::ssh::private_keys {
   require opdemand::ssh::dirs
   
   $server_private_key = hiera("server/ssh_private_key", "")
-  $app_private_key = hiera("appication/repository_key", "")
+  $app_private_key = hiera("application/repository_key", "")
   
   if $server_private_key {
     # add server private key to root user
