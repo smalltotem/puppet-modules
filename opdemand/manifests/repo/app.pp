@@ -27,7 +27,7 @@ class opdemand::repo::app (
     revision => $repository_revision,
     owner => $repository_owner,
     group => $repository_group,
-    require => File["/root/.ssh/known_hosts"],
+    require => [ Class["Opdemand::Ssh::Known_hosts"], Class["Opdemand::Ssh::Private_keys"] ],
     # TODO: make identity file location dynamic
     identity => $identity_path,
   }
