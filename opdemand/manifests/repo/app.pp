@@ -20,8 +20,8 @@ class opdemand::repo::app (
     owner => $repository_owner,
     group => $repository_group,
     require => Class["Opdemand::Inputs"],
+    # TODO: make identity file location dynamic
+    identity => "/home/ubuntu/.ssh/opdemand-app"
   }
-  
-  notice("${repository_path} initialized successfully")
-  
+    
 }
