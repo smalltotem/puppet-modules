@@ -21,4 +21,6 @@ class opdemand::repo::server (
     group => $repository_group,
   }
   
+  notice("${repository_path} initialized successfully")
+  
 }

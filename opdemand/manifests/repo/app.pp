@@ -22,4 +22,6 @@ class opdemand::repo::app (
     require => Class["Opdemand::Inputs"],
   }
   
+  notice("${repository_path} initialized successfully")
+  
 }

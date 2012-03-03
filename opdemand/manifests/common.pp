@@ -8,7 +8,8 @@ class opdemand::common {
   class {"opdemand::ssh::known_hosts":} ->
   class {"opdemand::ssh::private_keys":} ->
   
-  # update the server deployment repository
-  class {"opdemand::repo::server":}
+  # update the deployment repositories
+  class {"opdemand::repo::server":} ->
+  class {"opdemand::repo::puppet"}
   
 }

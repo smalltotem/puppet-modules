@@ -20,5 +20,7 @@ class opdemand::repo::puppet (
     owner => $repository_owner,
     group => $repository_group,
   }
+ 
+  notice("${repository_path} initialized successfully")
   
 }
