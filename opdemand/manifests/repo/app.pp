@@ -16,7 +16,7 @@ class opdemand::repo::app (
   # determine ssh identity file to use
   if $repository_key {
     $identity_path = "/home/ubuntu/.ssh/opdemand-app"
-  else {
+  } else {
     $identity_path = "/dev/null"
   }
   
