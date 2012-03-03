@@ -1,7 +1,8 @@
 
 class opdemand::ssh::known_hosts { 
 
-  require opdemand::common    
+  require opdemand::common   
+  require opdemand::ssh::dirs
   
   $host_fingerprints = hiera("server/ssh_known_hosts")
   

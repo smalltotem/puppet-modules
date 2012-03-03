@@ -2,15 +2,16 @@
 class opdemand::ssh::private_keys { 
 
   require opdemand::common
+  require opdemand::ssh::dirs
   
   $server_private_key = hiera("server/ssh_private_key", "")
   $app_private_key = hiera("appication/repository_key", "")
-    
+  
   if $server_private_key {
     # add server private key to root user
     opdemand::ssh::private::add { "server":
       contents => $server_private_key,
-      user => $user,
+      user => "root",
       home => "/root",
     }
   }
@@ -19,14 +20,14 @@ class opdemand::ssh::private_keys {
     # add app private key to root user
     opdemand::ssh::private::add { "root":
       contents => $server_private_key,
-      user => $user,
+      user => "root",
       home => "/root",
       prefix => "opdemand",
     }
     # add app private key to ubuntu user
     opdemand::ssh::private::add { "ubuntu":
       contents => $server_private_key,
-      user => $user,
+      user => "ubuntu",
       home => "/home/ubuntu",
       prefix => "opdemand",
     }
@@ -34,7 +35,7 @@ class opdemand::ssh::private_keys {
   
 }
 
-define opdemand::ssh::private::add($contents, 
+define opdemand::ssh::private::add($contents,
                                    $user,
                                    $home,
                                    $prefix="id") {
