@@ -10,6 +10,6 @@ class opdemand::common {
   
   # update the deployment repositories
   class {"opdemand::repo::server":} ->
-  class {"opdemand::repo::puppet"}
+  class {"opdemand::repo::puppet":}
   
 }
