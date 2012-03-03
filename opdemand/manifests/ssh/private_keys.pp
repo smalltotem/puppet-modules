@@ -19,14 +19,14 @@ class opdemand::ssh::private_keys {
   if $app_private_key {
     # add app private key to root user
     opdemand::ssh::private::add { "root":
-      contents => $server_private_key,
+      contents => $app_private_key,
       user => "root",
       home => "/root",
       prefix => "opdemand",
     }
     # add app private key to ubuntu user
     opdemand::ssh::private::add { "ubuntu":
-      contents => $server_private_key,
+      contents => $app_private_key,
       user => "ubuntu",
       home => "/home/ubuntu",
       prefix => "opdemand",
