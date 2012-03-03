@@ -1,16 +1,16 @@
 
-class opdemand::ssh::public ($user="ubuntu") { 
+class opdemand::ssh::authorized_keys { 
 
   require opdemand::common    
   
   $keys = hiera("server/ssh_authorized_keys")
   
   # add a key for each in the list
-  opdemand::ssh::public::add { $keys: }
+  opdemand::ssh::authorized_keys::add { $keys: }
   
 }
 
-define opdemand::ssh::public::add() {
+define opdemand::ssh::authorized_keys::add() {
   
   if $name =~ /^(ssh-...) ([^ ]+) ?(.+)?/ {
     
@@ -22,7 +22,8 @@ define opdemand::ssh::public::add() {
       /(.+)/  => $1,
       default => "default"
     } 
-            
+    
+    # add authorized keys to ubuntu user
     ssh_authorized_key { "${keyname}":
       ensure  => "present",
       user    => "ubuntu",

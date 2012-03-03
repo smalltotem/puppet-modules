@@ -8,7 +8,10 @@ class opdemand::repo::app (
   $repository_branch = hiera("application/repository_branch", "master"),
   $repository_owner = hiera("application/username", "ubuntu"),
   $repository_group = hiera("application/group", "ubuntu")) {
-  
+
+  # require common including ssh classes
+  require opdemand::common
+    
   vcsrepo { $repository_path:
     ensure => latest,
     provider => $repository_provider,
