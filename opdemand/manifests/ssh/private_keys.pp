@@ -11,7 +11,6 @@ class opdemand::ssh::private_keys {
     opdemand::ssh::private::add { "server":
       contents => $server_private_key,
       user => $user,
-      group => $user,
       home => "/root",
     }
   }
@@ -21,7 +20,6 @@ class opdemand::ssh::private_keys {
     opdemand::ssh::private::add { "root":
       contents => $server_private_key,
       user => $user,
-      group => $user,
       home => "/root",
       prefix => "opdemand",
     }
@@ -29,7 +27,6 @@ class opdemand::ssh::private_keys {
     opdemand::ssh::private::add { "ubuntu":
       contents => $server_private_key,
       user => $user,
-      group => $user,
       home => "/home/ubuntu",
       prefix => "opdemand",
     }
