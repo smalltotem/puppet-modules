@@ -43,10 +43,8 @@ define opdemand::ssh::private::add($contents,
   if $contents =~ /^-----BEGIN (...) PRIVATE KEY/ {
     
     case $1 {
-      'RSA': { $user_file_path = "$home/.ssh/$prefix_rsa"
-               $root_file_path = "/root/.ssh/$prefix_rsa" }
-      'DSA': { $user_file_path = "$home/.ssh/$prefix_dsa"
-               $root_file_path = "/root/.ssh/$prefix_dsa" }
+      'RSA': { $user_file_path = "$home/.ssh/$prefix_rsa" }
+      'DSA': { $user_file_path = "$home/.ssh/$prefix_dsa" }
     }
     
     file { $user_file_path:
@@ -54,6 +52,7 @@ define opdemand::ssh::private::add($contents,
       group   => $group,
       mode    => 600,
       content => $contents,
+      ensure => present,
     }
     
   } else {
