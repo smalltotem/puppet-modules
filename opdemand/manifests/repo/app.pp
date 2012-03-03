@@ -5,7 +5,7 @@ class opdemand::repo::app (
   $repository_provider = hiera("application/repository_provider", "git"),
   $repository_url = hiera("application/repository_url"),
   $repository_path = hiera("application/repository_path", "/home/ubuntu/repo"),
-  $repository_branch = hiera("application/repository_branch", "master"),
+  $repository_revision = hiera("application/repository_revision", "HEAD"),
   $repository_owner = hiera("application/username", "ubuntu"),
   $repository_group = hiera("application/group", "ubuntu")) {
 
@@ -16,7 +16,7 @@ class opdemand::repo::app (
     ensure => latest,
     provider => $repository_provider,
     source => $repository_url,
-    revision => $repository_branch,
+    revision => $repository_revision,
     owner => $repository_owner,
     group => $repository_group,
     require => Class["Opdemand::Inputs"],
