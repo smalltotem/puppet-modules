@@ -7,9 +7,6 @@
 [submodule "hiera"]
 	path = hiera
 	url = git://github.com/puppetlabs/hiera-puppet.git
-[submodule "nginx"]
-	path = nginx
-	url = git://github.com/puppetlabs/puppetlabs-nginx.git
 [submodule "stdlib"]
 	path = stdlib
 	url = git://github.com/puppetlabs/puppetlabs-stdlib.git
