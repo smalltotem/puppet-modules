@@ -1,4 +1,4 @@
-class clojurelein::install {
+class clojure::install {
 
   require clojure::params
   
