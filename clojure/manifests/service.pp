@@ -8,6 +8,6 @@ class clojure::service {
     provider => upstart,
     require => [ Class[Clojure::Install], Class[Clojure::Config] ],
     subscribe => Vcsrepo["$clojure::params::repository_path"],
-  } ->
+  } 
 
 }
