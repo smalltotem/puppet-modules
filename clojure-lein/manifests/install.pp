@@ -1,21 +1,8 @@
-class django::install {
+class clojurelein::install {
 
-  require django::params
+  require clojure::params
   
-  $packages = $django::params::database_type ? {
-    postgresql => [ "python-django" , "python-psycopg2" ],
-    # need to find the right driver package names
-    mysql => [ "python-django" , "python-mysql" ],
-    oracle => [ "python-django" , "python-oracle" ],
-  }
-
-  $database_service = "$django::params::database_type"
-
-  if defined(Service[$database_service]) {
-    $package_requires = Service["$database_service"]
-  } else {
-    $package_requires = []
-  }  
+  $package_requires = ["leinegen"]
   
   package { $packages:
       ensure => latest,
