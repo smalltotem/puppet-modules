@@ -1,16 +1,13 @@
-class django::service {
+class clojure::service {
 
-  require django::params
+  require clojure::params
 
-  service {"django":
+  service {"clojure":
     ensure => running,
-    name => "django",
+    name => "clojure",
     provider => upstart,
-    require => [ Class[Django::Install], Class[Django::Config] ],
-    subscribe => Vcsrepo["$django::params::repository_path"],
+    require => [ Class[Clojure::Install], Class[Clojure::Config] ],
+    subscribe => Vcsrepo["$clojure::params::repository_path"],
   } ->
-
-  django::syncdb {"django":} ->
-  django::createadmin {"django":}
 
 }
