@@ -6,6 +6,6 @@ start on (local-filesystems and net-device-up IFACE=eth0)
 stop on shutdown
 
 script
-    exec sudo -u <%= scope.lookupvar("clojure::params::username") %> -i cd /home/<%= scope.lookupvar("clojure::params::username") %>/repo && lein deps
-    exec sudo -u <%= scope.lookupvar("clojure::params::username") %> -i cd /home/<%= scope.lookupvar("clojure::params::username") %>/repo && lein ring server-headless 8080
+    cd /home/<%= scope.lookupvar("clojure::params::username") %>/repo 
+    exec lein ring server-headless <%= scope.lookupvar("clojure::params::port") %>
 end script
