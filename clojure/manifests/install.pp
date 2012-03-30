@@ -4,7 +4,6 @@ class clojure::install {
   $packages = ["leiningen"]
   package { $packages:
         ensure => latest,
-        require => $package_requires,
   }
 
 }
