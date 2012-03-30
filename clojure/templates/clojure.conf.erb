@@ -6,8 +6,9 @@ start on (local-filesystems and net-device-up IFACE=eth0)
 stop on shutdown
 
 script
-    export HOME="<%= scope.lookupvar("clojure::params::home") %>"
-    cd <%= scope.lookupvar("clojure:params:repository_path") %> 
+    wget https://raw.github.com/technomancy/leiningen/stable/bin/lein -P /usr/bin/
+    chmod 755 /usr/bin/lein
+    cd /home/ubuntu/repo
     exec sudo -u <%= scope.lookupvar("clojure::params::username") %> -i lein deps
     exec sudo -u <%= scope.lookupvar("clojure::params::username") %> -i lein ring server 8080
 end script
