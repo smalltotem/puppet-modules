@@ -6,13 +6,5 @@ class clojure::install {
         ensure => latest,
   }
 
-  exec { "clojure::npm::install::${name}":
-    command => "lein deps",
-    cwd => "/home/ubuntu/repo/",
-    path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
-    user => "$clojure::params::username",
-    group => "$clojure::params::group",
- }
-
 
 }
