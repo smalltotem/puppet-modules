@@ -9,6 +9,7 @@ script
     wget https://raw.github.com/technomancy/leiningen/stable/bin/lein -P /usr/bin/
     chmod 755 /usr/bin/lein
     cd /home/ubuntu/repo
+    exec sudo -u <%= scope.lookupvar("clojure::params::username") %> -i lein self-install
     exec sudo -u <%= scope.lookupvar("clojure::params::username") %> -i lein deps
     exec sudo -u <%= scope.lookupvar("clojure::params::username") %> -i lein ring server 8080
 end script
