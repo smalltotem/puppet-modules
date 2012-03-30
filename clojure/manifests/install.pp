@@ -2,7 +2,7 @@ class clojure::install {
 
   require clojure::params
   
-  $package_requires = ["leinegen"]
+  $package_requires = ["leiningen"]
   
   package { $packages:
       ensure => latest,
