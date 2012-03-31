@@ -20,7 +20,6 @@ class opdemand::framework::clojure::lein{
   # include relevant classes
   include clojure::install
   include clojure::config
-  include clojure::service
 
   exec { "clojure::npm::install::${name}":
         command => "lein deps",
@@ -30,4 +29,5 @@ class opdemand::framework::clojure::lein{
         group => "$clojure::params::group",
   }
 
+  include clojure::service
 }
