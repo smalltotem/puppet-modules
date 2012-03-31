@@ -22,4 +22,12 @@ class opdemand::framework::clojure::lein{
   include clojure::config
   include clojure::service
 
+  exec { "clojure::npm::install::${name}":
+        command => "lein deps",
+        cwd => "/home/ubuntu/repo/",
+        path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
+        user => "$clojure::params::username",
+        group => "$clojure::params::group",
+  }
+
 }
