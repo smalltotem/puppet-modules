@@ -20,14 +20,5 @@ class opdemand::framework::clojure::lein{
   # include relevant classes
   include clojure::install
   include clojure::config
-
-  exec { "clojure::npm::install::${name}":
-        command => "lein deps",
-        cwd => "/home/ubuntu/repo/",
-        path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
-        user => "$clojure::params::username",
-        group => "$clojure::params::group",
-  }
-
   include clojure::service
 }

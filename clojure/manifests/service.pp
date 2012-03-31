@@ -1,7 +1,15 @@
 class clojure::service {
 
   require clojure::params
-
+  
+  exec { "clojure::npm::install::${name}":
+        command => "lein deps",
+        cwd => "/home/ubuntu/repo/",
+        path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
+        user => "$clojure::params::username",
+        group => "$clojure::params::group",
+        subscribe => Vcsrepo["$clojure::params::repository_path"],
+  }
 
   service {"clojure":
     ensure => running,
