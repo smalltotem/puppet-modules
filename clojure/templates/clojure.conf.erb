@@ -7,5 +7,6 @@ stop on shutdown
 
 script
     export HOME=/home/ubuntu/repo
-    exec sudo -u <%= scope.lookupvar("clojure::params::username") %> -i lein ring server-headless <%= scope.lookupvar("clojure::params::port") %> 2>&1 >> /var/log/nodejs.log
+    cd /home/ubuntu/repo
+    exec sudo -u <%= scope.lookupvar("clojure::params::username") %> lein ring server-headless <%= scope.lookupvar("clojure::params::port") %> 2>&1 >> /var/log/clojure.log
 end script
