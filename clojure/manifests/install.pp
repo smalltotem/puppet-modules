@@ -8,7 +8,7 @@ class clojure::install {
   }
   exec { "clojure::install::${name}":
         command => "lein deps",
-        cwd => "/home/ubuntu/repo/",
+        cwd => "$clojure::params::repository_path",
         path => ["/sbin", "/bin", "/usr/bin", "/usr/local/bin"],
         user => "$clojure::params::username",
         group => "$clojure::params::group",
