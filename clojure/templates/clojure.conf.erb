@@ -6,6 +6,6 @@ start on (local-filesystems and net-device-up IFACE=eth0)
 stop on shutdown
 
 script
-    cd /home/<%= scope.lookupvar("clojure::params::username") %>/repo 
-    exec lein ring server-headless <%= scope.lookupvar("clojure::params::port") %>
+    export HOME=/home/ubuntu/repo
+    exec sudo -u <%= scope.lookupvar("clojure::params::username") %> -i lein ring server-headless <%= scope.lookupvar("clojure::params::port") %> 2>&1 >> /var/log/nodejs.log
 end script
