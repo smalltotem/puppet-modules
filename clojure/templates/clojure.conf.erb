@@ -6,7 +6,7 @@ start on (local-filesystems and net-device-up IFACE=eth0)
 stop on shutdown
 
 script
-    export HOME=/home/ubuntu/repo
-    cd /home/ubuntu/repo
+    export HOME=<%= scope.lookupvar("clojure::params::repository_path") %>
+    cd <%= scope.lookupvar("clojure::params::repository_path") %>
     exec sudo -u <%= scope.lookupvar("clojure::params::username") %> lein ring server-headless <%= scope.lookupvar("clojure::params::port") %> 2>&1 >> /var/log/clojure.log
 end script
