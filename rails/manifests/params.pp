@@ -6,6 +6,9 @@ class rails::params (
   $admin_password = "changeme123",
   # database settings
   $database_type = "postgresql",
+  $database_name = "rails",
+  $database_username = "rails",
+  $database_password = "changeme123.",
   # service settings
   $bind = "0.0.0.0",
   $port = "8080",

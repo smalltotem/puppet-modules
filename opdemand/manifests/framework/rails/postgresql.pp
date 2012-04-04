@@ -13,6 +13,9 @@ class opdemand::framework::rails::postgresql {
     admin_email => hiera("admin/email", "admin@example.org"),
     # database
     database_type => hiera("database/type", "postgresql"),
+    database_name => hiera("database/name", "rails"),
+    database_username => hiera("database/username", "rails"),
+    database_password => hiera("database/password", "changeme123."),
     # service
     bind => hiera("application/bind", "0.0.0.0"),
     port => hiera("application/port", "8080"),
