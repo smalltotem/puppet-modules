@@ -1,0 +1,12 @@
+#!upstart
+description "rails app server"
+author      "OpDemand"
+
+start on (local-filesystems and net-device-up IFACE=eth0)
+stop on shutdown
+
+script
+    export HOME="<%= scope.lookupvar("rails::params::home") %>"
+    cd $HOME/repo
+    exec sudo -u <%= scope.lookupvar("rails::params::username") %> rails server 2>&1 >> /var/log/rails.log
+end script
