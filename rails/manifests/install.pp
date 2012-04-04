@@ -16,15 +16,18 @@ class rails::install {
   # install framework packages
   package { $packages:
       ensure => latest,
+      require => Package[$db_packages],
   }
 
   # install gems
   package { $gems:
       provider => "gem",
       ensure => latest,
-      require => Package[rubygems]
+      require => Package[$packages],
   }
   
-  rails::dbcreate {"rails":}
+  rails::dbcreate {"rails":
+      require => Package[$gems],
+  }
 
 }
