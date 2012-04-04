@@ -10,7 +10,6 @@ class rails::service {
     subscribe => Vcsrepo["$rails::params::repository_path"],
   } ->
 
-  rails::bundleinstall {"rails":} ->
-  rails::syncdb {"rails":}
+  rails::dbsync {"rails":}
 
 }
