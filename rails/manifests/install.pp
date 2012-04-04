@@ -25,9 +25,5 @@ class rails::install {
       ensure => latest,
       require => Package[$packages],
   }
-  
-  rails::dbcreate {"rails":
-      require => Package[$gems],
-  }
 
 }
