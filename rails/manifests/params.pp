@@ -6,6 +6,8 @@ class rails::params (
   $admin_password = "changeme123",
   # database settings
   $database_type = "postgresql",
+  $database_host = "localhost",
+  $database_port = "5432",  
   $database_name = "rails",
   $database_username = "rails",
   $database_password = "changeme123.",

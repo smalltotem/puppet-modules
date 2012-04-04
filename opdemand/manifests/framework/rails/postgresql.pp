@@ -13,6 +13,8 @@ class opdemand::framework::rails::postgresql {
     admin_email => hiera("admin/email", "admin@example.org"),
     # database
     database_type => hiera("database/type", "postgresql"),
+    database_host => hiera("database/host", "localhost"),
+    database_port => hiera("database/port", "5432"),
     database_name => hiera("database/name", "rails"),
     database_username => hiera("database/username", "rails"),
     database_password => hiera("database/password", "changeme123."),
