@@ -15,7 +15,8 @@ define postgres::createuser($passwd) {
   sqlexec{ createuser:
     username => "postgres",
     database => "postgres",
-    sql      => "CREATE USER ${name} WITH PASSWORD '${passwd}';",
+    # allow createdb
+    sql      => "CREATE USER ${name} WITH PASSWORD '${passwd}' CREATEDB;",
     sqlcheck => "\"SELECT usename FROM pg_user WHERE usename = '${name}'\" | grep ${name}",
     require  =>  Service["postgresql"],
   }
